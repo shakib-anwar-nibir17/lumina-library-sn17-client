@@ -40,9 +40,21 @@ const Login = () => {
       <div className="lg:w-1/2">
         <img src={registerImage} alt="" />
       </div>
-      <div className="rounded-md lg:w-1/3 border-2 border-[#D0D0D0]">
-        <h2 className={`text-4xl  font-bold mt-12 text-center`}>Sign Up</h2>
-        <form className="card-body">
+      <div className="rounded-md w-[90%] px-6 lg:px-0 lg:w-1/2 border-2 border-[#D0D0D0]">
+        <h2 className="text-4xl  font-bold mt-12 text-center">Sign Up</h2>
+        <form className="lg:card-body w-full">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              className="input input-bordered"
+              required
+            />
+          </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -67,13 +79,25 @@ const Login = () => {
               required
             />
           </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Photo</span>
+            </label>
+            <input
+              type="text"
+              name="photo"
+              placeholder="Photo URL"
+              className="input input-bordered"
+              required
+            />
+          </div>
           <div className="form-control mt-6">
             <button className="btn bg-custom-main text-white font-semibold hover:bg-white hover:text-custom-main hover:border-2 hover:border-custom-main">
               Sign Up
             </button>
           </div>
         </form>
-        <p className="text-center font-medium">or Sign Up With</p>
+        <p className="text-center font-medium mt-8">or Sign Up With</p>
         <div className="mt-2 card-body">
           <button className="bg-white btn border-2 border-custom-main hover:btn-success text-custom-main hover:text-white">
             <img className="w-[25px] h-[25px]" src={google} alt="" />

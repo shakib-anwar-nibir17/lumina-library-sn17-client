@@ -39,9 +39,9 @@ const Login = () => {
       <div className="lg:w-1/2">
         <img src={LoginImage} alt="" />
       </div>
-      <div className="rounded-md lg:w-1/3 border-2 border-[#D0D0D0]">
+      <div className="rounded-md w-[90%] px-6 lg:px-0 lg:w-1/3 border-2 border-[#D0D0D0]">
         <h2 className="text-4xl  font-bold mt-12 text-center">Sign in</h2>
-        <form className="card-body">
+        <form className="lg:card-body w-full">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>

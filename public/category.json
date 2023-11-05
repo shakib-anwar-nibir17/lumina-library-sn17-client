@@ -1,0 +1,22 @@
+[
+  {
+    "category_name": "Novel",
+    "description": "Enter worlds uncharted, with rich characters and imaginative storytelling. Novels offer an escape into diverse realms of creativity and inspiration.",
+    "photo1": "https://i.ibb.co/Dt68D3y/1.png"
+  },
+  {
+    "category_name": "Drama",
+    "description": "Unveil human emotions, conflicts, and life's complexities in gripping dramas that resonate with the heart and soul. Dive into compelling narratives.",
+    "photo1": "https://i.ibb.co/LYsQ4wP/2.png"
+  },
+  {
+    "category_name": "Thriller",
+    "description": "Heart-pounding suspense and plot twists that keep you on the edge of your seat. Thrillers are the ultimate pulse-quickening experience.",
+    "photo1": "https://i.ibb.co/HVSRHBM/3.png"
+  },
+  {
+    "category_name": "History",
+    "description": "Journey through time and uncover the secrets, heroes, and epic events that shaped our world. History books bring the past to life.",
+    "photo1": "https://i.ibb.co/VVBsgkc/4.png"
+  }
+]
