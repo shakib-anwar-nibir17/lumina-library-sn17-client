@@ -1,10 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../Pages/Shared/Navabar/Navbar";
+import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const Root = () => {
   return (
     <div className="container mx-auto font-custom">
-      <Navbar></Navbar>
+      <div>
+        <Navbar></Navbar>
+        <div className="h-2 bg-custom-main lg:hidden"></div>
+      </div>
       <Outlet></Outlet>
     </div>
   );

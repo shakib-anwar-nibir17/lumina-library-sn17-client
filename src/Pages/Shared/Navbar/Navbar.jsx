@@ -5,7 +5,6 @@ import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(true);
-  // const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -80,8 +79,8 @@ const Navbar = () => {
             isPending
               ? "pending"
               : isActive
-              ? "bg-custom-main border-2  border-custom-main py-3 px-40 md:px-3 rounded-md text-white"
-              : "hover:border-2 hover:border-custom-main py-3 px-40 md:px-3 rounded-md"
+              ? "bg-custom-main border-2  border-custom-main py-3 px-0 md:px-3 rounded-md text-white"
+              : "hover:border-2 hover:border-custom-main py-3 px-4 md:px-3 rounded-md"
           }
         >
           Borrowed Books
@@ -108,7 +107,10 @@ const Navbar = () => {
       <div className="flex items-center">
         <img className="w-[50px] hidden lg:block" src={logo} alt="" />
         <Link className="pl-3 text-2xl md:text-2xl lg:text-4xl font-bold">
-          <span className="text-custom-main2">Library</span> Lumina
+          <span className={` ${theme === "dark" ? "text-dark" : "text-light"}`}>
+            Library
+          </span>{" "}
+          Lumina
         </Link>
       </div>
       <div
