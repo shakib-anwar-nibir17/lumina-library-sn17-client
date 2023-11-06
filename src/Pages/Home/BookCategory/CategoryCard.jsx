@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category }) => {
-  const { category_name, photo1 } = category;
+  const { _id, category_name, photo1 } = category;
   return (
     <div>
       <div>
@@ -9,9 +10,11 @@ const CategoryCard = ({ category }) => {
       </div>
       <div className=" text-custom-main font-bold flex flex-col items-center">
         <h2 className="text-2xl">{category_name}</h2>
-        <button className="btn w-1/2  bg-custom-main text-white font-semibold  hover:bg-white hover:text-custom-main hover:border-2 hover:border-custom-main">
-          Browse Collection
-        </button>
+        <Link to={`/category/${_id}`}>
+          <button className="btn   bg-custom-main text-white font-semibold  hover:bg-white hover:text-custom-main hover:border-2 hover:border-custom-main">
+            Browse Collection
+          </button>
+        </Link>
       </div>
     </div>
   );

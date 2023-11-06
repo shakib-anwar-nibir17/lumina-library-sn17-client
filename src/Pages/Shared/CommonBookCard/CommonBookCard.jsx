@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 import { Rating, Star } from "@smastrom/react-rating";
+import { Link } from "react-router-dom";
 
 const customStyles = {
   itemShapes: Star,
@@ -8,8 +9,8 @@ const customStyles = {
   inactiveFillColor: "#fae5df",
 };
 
-const BookCard = ({ book }) => {
-  const { image, name, author, rating, category } = book;
+const CommonBookCard = ({ book }) => {
+  const { _id, image, name, author, rating, category } = book;
   return (
     <div>
       <div className="card card-compact border-2 border-custom-main">
@@ -29,9 +30,11 @@ const BookCard = ({ book }) => {
             />
           </div>
           <div className="card-actions">
-            <button className="btn bg-custom-main text-white font-semibold mt-6 hover:bg-white hover:text-custom-main hover:border-2 hover:border-custom-main">
-              Update
-            </button>
+            <Link to={`/books_details/${_id}`}>
+              <button className="btn bg-custom-main text-white font-semibold mt-6 hover:bg-white hover:text-custom-main hover:border-2 hover:border-custom-main">
+                Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -39,8 +42,8 @@ const BookCard = ({ book }) => {
   );
 };
 
-BookCard.propTypes = {
+CommonBookCard.propTypes = {
   book: PropTypes.object,
 };
 
-export default BookCard;
+export default CommonBookCard;
