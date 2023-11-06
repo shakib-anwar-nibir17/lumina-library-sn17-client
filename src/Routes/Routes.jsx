@@ -3,6 +3,7 @@ import Root from "../Root/Root";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import AllBooks from "../Pages/AllBooks/AllBooks";
 
 const routes = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/books",
+        element: <AllBooks></AllBooks>,
+        loader: () => fetch("http://localhost:5000/books"),
       },
     ],
   },
