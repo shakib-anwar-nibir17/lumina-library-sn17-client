@@ -2,38 +2,58 @@ import LoginImage from "../../assets/login.png";
 import google from "../../assets/google.png";
 // import facebook from "../../assets/images/login/facebook.png";
 // import linkedin from "../../assets/images/login/linkedin.png";
-import { Link } from "react-router-dom";
-// import { useContext } from "react";
-// import { AuthContext } from "../../AuthProvider/AuthProvider";
-// import axios from "axios";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
-  // const { userSignIn } = useContext(AuthContext);
-  // const location = useLocation();
-  // const navigate = useNavigate();
+  const { userSignIn, signInWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const form = event.target;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
-  //   console.log(password, email);
-  //   userSignIn(email, password)
-  //     .then((result) => {
-  //       console.log(result.user);
-  //       const user = { email };
-  //       axios
-  //         .post("http://localhost:5000/jwt", user, { withCredentials: true })
-  //         .then((response) => {
-  //           console.log(response.data);
-  //           if (response.data.success) {
-  //             navigate(location?.state ? location?.state : "/");
-  //           }
-  //         });
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
 
+    userSignIn(email, password)
+      .then((res) => {
+        console.log(res.user);
+        Swal.fire({
+          icon: "success",
+        });
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Invalid Login Credential",
+          text: "Check if you have typed the correct password or email",
+        });
+      });
+  };
+
+  const handleLoginWithGoogle = () => {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+        Swal.fire({
+          icon: "success",
+        });
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+        });
+      });
+  };
   return (
     <div className="hero min-h-screen flex flex-col lg:flex-row mb-10">
       <div className="lg:w-1/2">
@@ -41,7 +61,7 @@ const Login = () => {
       </div>
       <div className="rounded-md w-[90%] px-6 lg:px-0 lg:w-1/3 border-2 border-[#D0D0D0]">
         <h2 className="text-4xl  font-bold mt-12 text-center">Sign in</h2>
-        <form className="lg:card-body w-full">
+        <form onSubmit={handleLogin} className="lg:card-body w-full">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -74,7 +94,10 @@ const Login = () => {
         </form>
         <p className="text-center font-medium">or Sign In With</p>
         <div className="mt-2 card-body">
-          <button className="bg-white btn border-2 border-custom-main hover:btn-success text-custom-main hover:text-white">
+          <button
+            onClick={handleLoginWithGoogle}
+            className="bg-white btn border-2 border-custom-main hover:btn-success text-custom-main hover:text-white"
+          >
             <img className="w-[25px] h-[25px]" src={google} alt="" />
             <h2>Google</h2>
           </button>

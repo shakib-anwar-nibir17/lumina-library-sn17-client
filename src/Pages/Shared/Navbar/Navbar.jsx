@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import userDefaultPic from "../../../assets/avatar.png";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-// import { AuthContext } from "../../../Providers/AuthProviders";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(true);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -23,11 +25,11 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-  // const handleSignOut = () => {
-  //   logOut()
-  //     .then((result) => console.log(result))
-  //     .catch((error) => console.error(error));
-  // };
+  const handleSignOut = () => {
+    logOut()
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  };
   const navLinks = (
     <>
       <li className="mb-5 md:mb-0">
@@ -97,7 +99,7 @@ const Navbar = () => {
               : "hover:border-2 hover:border-custom-main py-3 px-40 md:px-3 rounded-md"
           }
         >
-          Login
+          Sign In
         </NavLink>
       </li>
     </>
@@ -130,7 +132,44 @@ const Navbar = () => {
         }`}
       >
         {navLinks}
-        <div className="flex items-center space-x-3 bg-[#80B3FF] px-5 py-3 rounded-full justify-center mx-4 md:mx-0"></div>
+        <div className="flex items-center space-x-3  px-5 py-3 rounded-full justify-center mx-4 md:mx-0">
+          {user && user.displayName ? (
+            <div className="hidden lg:block">
+              <h2>{user.displayName}</h2>
+            </div>
+          ) : user ? (
+            <div className="hidden lg:block">
+              <h2>{user.email}</h2>
+            </div>
+          ) : null}
+          {user && user.photoURL ? (
+            <label className="btn btn-ghost btn-circle avatar md:hidden lg:block">
+              <div className="w-12 rounded-full">
+                <img src={user.photoURL} />
+              </div>
+            </label>
+          ) : user ? (
+            <label className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={userDefaultPic} />
+              </div>
+            </label>
+          ) : null}
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="btn btn-error text-white"
+            >
+              Sign out
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn hidden bg-custom-main2 border-2 border-custom-main text-white">
+                Sign in
+              </button>
+            </Link>
+          )}
+        </div>
         <div>
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}

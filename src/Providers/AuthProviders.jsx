@@ -1,61 +1,82 @@
-import { createContext } from "react";
-// import {
-//   createUserWithEmailAndPassword,
-//   getAuth,
-//   onAuthStateChanged,
-//   signInWithEmailAndPassword,
-//   signOut,
-// } from "firebase/auth";
-// import app from "../Firebase/firebase.config";
+import { createContext, useEffect, useState } from "react";
+
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import PropTypes from "prop-types";
+import app from "../Firebase/firebase.console";
 
+const auth = getAuth(app);
 export const AuthContext = createContext(null);
-// const auth = getAuth(app);
 
-const AuthProvider = ({ children }) => {
-  // const [user, setUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
+const AuthProviders = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     console.log("current user:", currentUser);
-  //     setUser(currentUser);
-  //     setLoading(false);
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("current user:", currentUser);
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => {
+      unSubscribe();
+    };
+  }, []);
 
-  // const createUser = (email, password) => {
-  //   setLoading(true);
-  //   return createUserWithEmailAndPassword(auth, email, password);
-  // };
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-  // const userSignIn = (email, password) => {
-  //   setLoading(true);
-  //   return signInWithEmailAndPassword(auth, email, password);
-  // };
+  const userSignIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-  // const logOut = () => {
-  //   setLoading(true);
-  //   return signOut(auth);
-  // };
+  const handleUpdateProfile = (name, photo) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
+  const signInWithGoogle = () => {
+    setLoading(true);
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  };
+
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
   const authInfo = {
-    // user,
-    // loading,
-    // createUser,
-    // userSignIn,
-    // logOut,
+    user,
+    loading,
+    handleUpdateProfile,
+    createUser,
+    userSignIn,
+    signInWithGoogle,
+    logOut,
   };
+
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 
-AuthProvider.propTypes = {
+AuthProviders.propTypes = {
   children: PropTypes.node,
 };
 
-export default AuthProvider;
+export default AuthProviders;
