@@ -8,6 +8,7 @@ import CategoryDetails from "../Pages/Home/BookCategory/CategoryDetails";
 import BookDetails from "../Pages/BookDetails/BookDetails";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AddBooks from "../Pages/AddBooks/AddBooks";
 
 const routes = createBrowserRouter([
   {
@@ -16,22 +17,34 @@ const routes = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "/",
+        path: "/", //home navLink
         element: <Home></Home>,
       },
       {
+        path: "/add_books", //Add Books navLink
+        element: <AddBooks></AddBooks>,
+      },
+      {
         path: "/category/:id",
-        element: <CategoryDetails></CategoryDetails>,
+        element: (
+          <PrivateRoute>
+            <CategoryDetails></CategoryDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
       },
       {
-        path: "/login",
+        path: "/login", //login navLink
         element: <Login></Login>,
       },
       {
         path: "/books_details/:id",
-        element: <BookDetails></BookDetails>,
+        element: (
+          <PrivateRoute>
+            <BookDetails></BookDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/books/${params.id}`),
       },
@@ -40,7 +53,7 @@ const routes = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/books",
+        path: "/books", //all books navLink
         element: (
           <PrivateRoute>
             <AllBooks></AllBooks>

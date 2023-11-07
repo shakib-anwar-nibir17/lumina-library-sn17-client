@@ -3,6 +3,10 @@ import { useLoaderData } from "react-router-dom";
 const BookDetails = () => {
   const book = useLoaderData();
   const { image, description, name, author } = book;
+
+  // const handleBorrow = () => {
+  //   fetch('')
+  // }
   return (
     <div>
       <div className="flex flex-col lg:flex-row">
@@ -32,7 +36,10 @@ const BookDetails = () => {
         <button className="bg-white btn border-2 border-custom-main hover:bg-custom-main  text-custom-main hover:text-white mr-2">
           Read More
         </button>
-        <button className="bg-white btn border-2 border-custom-main hover:bg-custom-main text-custom-main hover:text-white">
+        <button
+          // onClick={handleBorrow}
+          className="bg-white btn border-2 border-custom-main hover:bg-custom-main text-custom-main hover:text-white"
+        >
           Borrow
         </button>
       </div>

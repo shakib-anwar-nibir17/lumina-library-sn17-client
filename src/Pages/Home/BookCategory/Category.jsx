@@ -8,7 +8,7 @@ const Category = () => {
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-  console.log(categories);
+
   return (
     <div>
       <div className="mt-20">
