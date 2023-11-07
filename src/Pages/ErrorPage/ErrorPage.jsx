@@ -8,7 +8,7 @@ const ErrorPage = () => {
     <div className="container mx-auto min-h-screen flex flex-col justify-center">
       <h1 className="text-7xl text-red-300 text-center">Oops!</h1>
       <img
-        className="mx-auto max-w-md max-h-md px-6 mt-6 mb-6"
+        className="mx-auto max-w-sm lg:max-w-md max-h-md px-6 mt-6 mb-6"
         src={Error}
         alt=""
       />
