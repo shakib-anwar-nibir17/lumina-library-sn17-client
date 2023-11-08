@@ -1,14 +1,11 @@
 import LoginImage from "../../assets/login.png";
 import google from "../../assets/google.png";
-// import facebook from "../../assets/images/login/facebook.png";
-// import linkedin from "../../assets/images/login/linkedin.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProviders";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
-  const { userSignIn, signInWithGoogle } = useContext(AuthContext);
+  const { userSignIn, signInWithGoogle } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 

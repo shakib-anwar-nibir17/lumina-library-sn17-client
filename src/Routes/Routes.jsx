@@ -10,6 +10,8 @@ import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AddBooks from "../Pages/AddBooks/AddBooks";
 import UpdateBookLayout from "../Pages/UpdateBook/UpdateBookLayout";
+import ReadPage from "../Pages/ReadPage/ReadPage";
+import Borrow from "../Pages/BorrowedBooks/Borrow";
 
 const routes = createBrowserRouter([
   {
@@ -23,7 +25,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/add_books", //Add Books navLink
-        element: <AddBooks></AddBooks>,
+        element: (
+          <PrivateRoute>
+            <AddBooks></AddBooks>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/category/:id",
@@ -40,6 +46,10 @@ const routes = createBrowserRouter([
         element: <Login></Login>,
       },
       {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
         path: "/books_details/:id",
         element: (
           <PrivateRoute>
@@ -50,8 +60,14 @@ const routes = createBrowserRouter([
           fetch(`http://localhost:5000/books/${params.id}`),
       },
       {
-        path: "/register",
-        element: <Register></Register>,
+        path: "/books_details/read/:id",
+        element: (
+          <PrivateRoute>
+            <ReadPage></ReadPage>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/books/${params.id}`),
       },
       {
         path: "/books", //all books navLink
@@ -71,6 +87,14 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/books/${params.id}`),
+      },
+      {
+        path: "/borrowed_books", //Borrowed Books navLink
+        element: (
+          <PrivateRoute>
+            <Borrow></Borrow>
+          </PrivateRoute>
+        ),
       },
     ],
   },
