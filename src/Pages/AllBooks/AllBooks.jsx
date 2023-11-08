@@ -22,7 +22,7 @@ const AllBooks = () => {
       <h1 className="text-2xl mt-10 lg:text-5xl text-center text-custom-main font-bold">
         Our Book Collection
       </h1>
-      <div className="flex gap-4 mt-6">
+      <div className="flex gap-4 mt-6 px-4">
         <div className="flex font-bold text-2xl">
           <button onClick={() => handleFilter()}>
             <FaFilter className="text-custom-main"></FaFilter>
@@ -36,7 +36,7 @@ const AllBooks = () => {
           <h2>Revert</h2>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
         {allBooks.map((book) => (
           <BookCard key={book._id} book={book}></BookCard>
         ))}

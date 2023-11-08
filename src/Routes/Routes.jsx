@@ -77,9 +77,8 @@ const routes = createBrowserRouter([
             <AllBooks></AllBooks>
           </PrivateRoute>
         ),
-        loader: () => {
-          fetch("http://localhost:5000/books", { credentials: "include" });
-        },
+        loader: () =>
+          fetch("http://localhost:5000/books", { credentials: "include" }),
       },
       {
         path: "/update_book/:id",

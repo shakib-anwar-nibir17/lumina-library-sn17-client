@@ -108,9 +108,9 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="flex flex-col md:flex-row gap-4 justify-between md:items-center   text-custom-main md:px-4  md:mx-auto mt-4 lg:mt-0 mb-4 lg:mb-0">
+    <nav className="flex flex-col lg:flex-row gap-4 justify-between lg:items-center   text-custom-main lg:px-4  md:mx-auto mt-4 lg:mt-0 mb-4 lg:mb-0">
       <div className="flex items-center">
-        <img className="w-[50px] hidden lg:block" src={logo} alt="" />
+        <img className="w-[50px] hidden md:block" src={logo} alt="" />
         <Link className="pl-3 text-2xl md:text-2xl lg:text-4xl font-bold">
           <span className={` ${theme === "dark" ? "text-dark" : "text-light"}`}>
             Library
@@ -122,7 +122,7 @@ const Navbar = () => {
         onClick={() => {
           setMenuOpen(!menuOpen);
         }}
-        className="flex flex-col gap-1 absolute w-10 top-[16px] right-2 md:hidden mr-2 p-2"
+        className="flex flex-col gap-1 absolute w-10 top-[16px] right-2 lg:hidden mr-2 p-2"
       >
         <span className="w-full h-1 bg-custom-main"></span>
         <span className="w-full h-1 bg-custom-main"></span>
@@ -130,12 +130,12 @@ const Navbar = () => {
       </div>
 
       <ul
-        className={`flex-col md:flex-row md:flex text-center md:pt-3 mt-3 md:mt-0 pb-2 font-bold gap-4 md:items-center ${
+        className={`flex flex-col lg:flex-row lg:flex text-center lg:pt-3 mt-3 lg:mt-0 pb-2 font-bold gap-4 lg:items-center ${
           menuOpen ? "hidden" : ""
         }`}
       >
         {navLinks}
-        <div className="flex items-center space-x-3  px-5 py-3 rounded-full justify-center mx-4 md:mx-0">
+        <div className="flex items-center space-x-3  px-5 py-3 rounded-full justify-center mx-4 lg:mx-0">
           {user && user.displayName ? (
             <div className="hidden lg:block">
               <h2>{user.displayName}</h2>
@@ -146,7 +146,7 @@ const Navbar = () => {
             </div>
           ) : null}
           {user && user.photoURL ? (
-            <label className="btn btn-ghost btn-circle avatar md:hidden lg:block">
+            <label className="btn btn-ghost btn-circle avatar lg:hidden lg:block">
               <div className="w-12 rounded-full">
                 <img src={user.photoURL} />
               </div>

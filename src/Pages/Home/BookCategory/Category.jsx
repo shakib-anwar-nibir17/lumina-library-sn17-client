@@ -12,11 +12,11 @@ const Category = () => {
   return (
     <div>
       <div className="mt-20">
-        <h2 className="text-2xl lg:text-5xl text-center text-custom-main font-bold">
+        <h2 className="text-2xl md:text-4xl lg:text-5xl text-center text-custom-main font-bold">
           Categories of Books
         </h2>
       </div>
-      <div className="grid gap-5 lg:gap-0 grid-cols-1 lg:grid-cols-4 mt-10">
+      <div className="grid gap-5 lg:gap-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10">
         {categories.map((category) => (
           <CategoryCard key={category._id} category={category}></CategoryCard>
         ))}

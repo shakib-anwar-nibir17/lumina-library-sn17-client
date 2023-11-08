@@ -13,17 +13,22 @@ const BookCard = ({ book }) => {
   const { _id, image, name, author, rating, category } = book;
   return (
     <div>
-      <div className="card card-compact border-2 border-custom-main">
-        <figure>
-          <img className="h-[350px] w-[230px] mt-8" src={image} alt={name} />
-        </figure>
+      <div className="card card-compact border-2 border-custom-main mx-4">
+        <div>
+          <img
+            className="h-[350px] w-[180px] mx-auto lg:w-[230px] mt-8"
+            src={image}
+            alt={name}
+          />
+        </div>
+
         <div className="card-body">
           <h2 className="card-title h-[56px] text-custom-main">{name}</h2>
           <div className="badge badge-info text-white">{category}</div>
           <p className="bold underline">{author}</p>
           <div>
             <Rating
-              style={{ maxWidth: 180 }}
+              style={{ maxWidth: 120 }}
               value={rating}
               readOnly
               itemStyles={customStyles}

@@ -5,8 +5,8 @@ import "aos/dist/aos.css";
 const Banner = () => {
   AOS.init();
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen justify-center items-center bg-custom-light1 px-6">
-      <div data-aos="fade-left" className="lg:w-1/2 text-center lg:text-left">
+    <div className="flex  flex-col md:flex-row min-h-screen justify-center items-center bg-custom-light1 px-6">
+      <div data-aos="fade-left" className=" md:w-1/2 text-center lg:text-left">
         <h1 className="text-2xl lg:text-7xl font-bold text-custom-main2">
           Where Pages Come to Life
           <span className="text-custom-main ml-2">
@@ -17,7 +17,7 @@ const Banner = () => {
           Browse Collection
         </button>
       </div>
-      <div data-aos="fade-right" className="lg:w-1/2">
+      <div data-aos="fade-right" className="md:w-1/2">
         <img className="w-full" src={banner} alt="banner-pic" />
       </div>
     </div>
