@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from "react";
 import userDefaultPic from "../../../assets/avatar.png";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import { AuthContext } from "../../../Providers/AuthProviders";
+
+import useAuth from "../../../Hooks/useAuth";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   const [menuOpen, setMenuOpen] = useState(true);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -74,20 +75,22 @@ const Navbar = () => {
           Add Books
         </NavLink>
       </li>
-      <li className="mb-5 md:mb-0">
-        <NavLink
-          to="/borrowed_books"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "bg-custom-main border-2  border-custom-main py-3 px-0 md:px-3 rounded-md text-white"
-              : "hover:border-2 hover:border-custom-main py-3 px-4 md:px-3 rounded-md"
-          }
-        >
-          Borrowed Books
-        </NavLink>
-      </li>
+      {user?.email && (
+        <li className="mb-5 md:mb-0">
+          <NavLink
+            to="/borrowed_books"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "bg-custom-main border-2 border-custom-main py-3 px-0 md:px-3 rounded-md text-white"
+                : "hover:border-2 hover:border-custom-main py-3 px-4 md:px-3 rounded-md"
+            }
+          >
+            Borrowed Books
+          </NavLink>
+        </li>
+      )}
       <li className="mb-5 md:mb-0">
         <NavLink
           to="/login"

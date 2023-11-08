@@ -23,7 +23,6 @@ const UpdateBook = () => {
       category,
       quantity,
     };
-    console.log(updatedBook);
 
     fetch(`http://localhost:5000/books/${_id}`, {
       method: "PUT",

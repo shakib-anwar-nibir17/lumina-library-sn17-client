@@ -13,9 +13,12 @@ import Swal from "sweetalert2";
 const BookDetails = () => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
+  const [bookQuantity, setBookQuantity] = useState(undefined);
   const book = useLoaderData();
   const { _id, image, description, name, author, quantity } = book;
   const borrow_date = useDate();
+
+  const amount = parseInt(quantity);
 
   const formattedDate = new Intl.DateTimeFormat({
     year: "2-digit",
@@ -32,11 +35,13 @@ const BookDetails = () => {
     const form = e.target;
     const user = form.user.value;
     const email = form.email.value;
+    const book_id = _id;
     const return_date = formattedDate;
 
     const newEntry = {
       user,
       email,
+      book_id,
       return_date,
       borrow_date,
       image,
@@ -63,6 +68,22 @@ const BookDetails = () => {
         }
       });
 
+    const newQuantity = amount - 1;
+    const validAmount = newQuantity < 0 ? 0 : newQuantity;
+
+    setBookQuantity(validAmount);
+
+    fetch(`http://localhost:5000/books/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ quantity: validAmount }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
     document.getElementById("my_modal_5").close();
   };
 
@@ -94,7 +115,15 @@ const BookDetails = () => {
       <div className="mt-10 mb-10 px-4">
         <h2 className="text-2xl font-bold">
           Book Copy Available:
-          <span className="text-custom-main">{quantity}</span>
+          {/* <span className="text-custom-main">{quantity}</span> */}
+          <span className="ml-2">
+            <input
+              value={bookQuantity >= 0 ? bookQuantity : amount}
+              className="w-[60px]"
+              type="number"
+              readOnly
+            />
+          </span>
         </h2>
       </div>
       <div className="px-4">
@@ -105,6 +134,7 @@ const BookDetails = () => {
         </Link>
         <button
           onClick={handleModal}
+          disabled={amount <= 0 || bookQuantity <= 0}
           className="bg-white btn border-2 border-custom-main hover:bg-custom-main text-custom-main hover:text-white"
         >
           Borrow
