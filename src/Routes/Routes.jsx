@@ -38,8 +38,9 @@ const routes = createBrowserRouter([
             <CategoryDetails></CategoryDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+        loader: ({ params }) => {
+          fetch(`http://localhost:5000/category/${params.id}`);
+        },
       },
       {
         path: "/login", //login navLink
@@ -76,7 +77,9 @@ const routes = createBrowserRouter([
             <AllBooks></AllBooks>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/books"),
+        loader: () => {
+          fetch("http://localhost:5000/books", { credentials: "include" });
+        },
       },
       {
         path: "/update_book/:id",

@@ -7,7 +7,9 @@ const Borrow = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/borrowed_books?email=${user.email}`)
+    fetch(`http://localhost:5000/borrowed_books?email=${user.email}`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setBorrowedBooks(data));
   }, [user.email]);

@@ -7,8 +7,6 @@ const BorrowedBooksCard = ({ book, borrowedBooks, setBorrowedBooks }) => {
   const { _id, book_id, return_date, borrow_date, image, name, author } = book;
   const { quantity } = newBook;
 
-  console.log(book_id);
-
   useEffect(() => {
     fetch(`http://localhost:5000/books/${book_id}`)
       .then((res) => res.json())

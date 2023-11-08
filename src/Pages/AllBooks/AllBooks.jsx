@@ -6,6 +6,7 @@ import { RxReset } from "react-icons/rx";
 
 const AllBooks = () => {
   const books = useLoaderData();
+
   const [allBooks, setAllBooks] = useState(books);
 
   const handleFilter = () => {
