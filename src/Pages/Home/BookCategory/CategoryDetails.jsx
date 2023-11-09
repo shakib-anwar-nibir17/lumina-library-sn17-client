@@ -16,7 +16,7 @@ const CategoryDetails = () => {
       <h1 className="text-2xl mt-10 lg:text-5xl text-center text-custom-main font-bold">
         {category_name} Collection
       </h1>
-      <div className="grid grid-cols-4 gap-5 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
         {books.map((book) => (
           <CommonBookCard key={book._id} book={book}></CommonBookCard>
         ))}
