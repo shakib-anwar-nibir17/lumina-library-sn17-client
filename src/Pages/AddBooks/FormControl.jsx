@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -17,16 +18,16 @@ const FormControl = () => {
   const addBooks = (data) => {
     setData(data);
 
-    fetch("https://book-store-server-puce.vercel.app/books", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
+    axios
+      .post("https://book-store-server-puce.vercel.app/books", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.insertedId) {
           Swal.fire({
             icon: "success",
             title: "Task successful",
