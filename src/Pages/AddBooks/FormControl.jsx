@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Swal from "sweetalert2";
-import useAuth from "../../Hooks/useAuth";
+
 const FormControl = () => {
-  const { user } = useAuth();
-  const Email = user.email;
   const defaultValues = {
     read: {
       photo1: "https://i.ibb.co/3yz8nFy/Reading-glasses-cuate.png",
@@ -21,7 +19,6 @@ const FormControl = () => {
 
     fetch(
       "http://localhost:5000/books",
-      { Email },
       {
         credentials: "include",
       },

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -24,17 +25,16 @@ const UpdateBook = () => {
       quantity,
     };
 
-    fetch(`http://localhost:5000/books/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedBook),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
+    axios
+      .put(`http://localhost:5000/books/${_id}`, updatedBook, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
             text: "Book Data Updated Successfully",
@@ -42,6 +42,10 @@ const UpdateBook = () => {
             confirmButtonText: "Done",
           });
         }
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error(error);
       });
   };
 

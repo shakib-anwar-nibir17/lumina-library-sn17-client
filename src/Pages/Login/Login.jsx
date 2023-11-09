@@ -3,7 +3,7 @@ import google from "../../assets/google.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
-import axios from "axios";
+// import axios from "axios";
 
 const Login = () => {
   const { userSignIn, signInWithGoogle } = useAuth();
@@ -34,17 +34,17 @@ const Login = () => {
           text: "Check if you have typed the correct password or email",
         });
       });
-    axios
-      .post(
-        "http://localhost:5000/jwt",
-        { email: email },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log("token response", res.data);
-      });
+    // axios
+    //   .post(
+    //     "http://localhost:5000/jwt",
+    //     { email: email },
+    //     {
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log("token response", res.data);
+    //   });
   };
 
   const handleLoginWithGoogle = () => {

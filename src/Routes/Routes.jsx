@@ -87,7 +87,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`),
+          fetch(`http://localhost:5000/books/${params.id}`, {
+            credentials: "include",
+          }),
       },
       {
         path: "/borrowed_books", //Borrowed Books navLink

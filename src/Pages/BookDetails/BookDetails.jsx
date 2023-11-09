@@ -48,6 +48,7 @@ const BookDetails = () => {
       name,
       author,
     };
+
     console.log(newEntry);
     fetch("http://localhost:5000/borrowed_books", {
       method: "POST",
@@ -56,35 +57,56 @@ const BookDetails = () => {
       },
       body: JSON.stringify(newEntry),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
+      .then((response) => {
+        console.log(response.status); // log the HTTP status code
+        if (response.status === 400) {
           Swal.fire({
-            icon: "success",
-            title: "Task successful",
-            text: "Book has been added to Your Collection",
+            icon: "error",
+            title: "Book is borrowed",
+            text: "Return first",
           });
+          return Promise.reject("Book is borrowed"); // Reject the promise to stop the chain
         }
-      });
-
-    const newQuantity = amount - 1;
-    const validAmount = newQuantity < 0 ? 0 : newQuantity;
-
-    setBookQuantity(validAmount);
-
-    fetch(`http://localhost:5000/books/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ quantity: validAmount }),
-    })
-      .then((res) => res.json())
+        return response.json();
+      })
       .then((data) => {
         console.log(data);
+
+        // Update quantity and trigger rendering only if the status is not 400
+        const newQuantity = amount - 1;
+        const validAmount = newQuantity < 0 ? 0 : newQuantity;
+
+        setBookQuantity(validAmount);
+
+        fetch(`http://localhost:5000/books/${_id}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ quantity: validAmount }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+
+            // Render success message if the book is successfully added
+            if (data.insertedId) {
+              Swal.fire({
+                icon: "success",
+                title: "Task successful",
+                text: "Book has been added to Your Collection",
+              });
+            }
+          });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Handle other errors here if needed
+      })
+      .finally(() => {
+        // Close the modal regardless of the outcome
+        document.getElementById("my_modal_5").close();
       });
-    document.getElementById("my_modal_5").close();
   };
 
   return (
