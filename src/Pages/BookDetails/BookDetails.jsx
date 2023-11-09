@@ -58,21 +58,28 @@ const BookDetails = () => {
       body: JSON.stringify(newEntry),
     })
       .then((response) => {
-        console.log(response.status); // log the HTTP status code
+        console.log(response.status);
         if (response.status === 400) {
           Swal.fire({
             icon: "error",
             title: "Book is borrowed",
             text: "Return first",
           });
-          return Promise.reject("Book is borrowed"); // Reject the promise to stop the chain
+          return Promise.reject("Book is borrowed");
         }
         return response.json();
       })
       .then((data) => {
         console.log(data);
 
-        // Update quantity and trigger rendering only if the status is not 400
+        if (data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Task successful",
+            text: "Book has been added to Your Collection",
+          });
+        }
+
         const newQuantity = amount - 1;
         const validAmount = newQuantity < 0 ? 0 : newQuantity;
 
@@ -89,7 +96,6 @@ const BookDetails = () => {
           .then((data) => {
             console.log(data);
 
-            // Render success message if the book is successfully added
             if (data.insertedId) {
               Swal.fire({
                 icon: "success",
@@ -101,10 +107,8 @@ const BookDetails = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-        // Handle other errors here if needed
       })
       .finally(() => {
-        // Close the modal regardless of the outcome
         document.getElementById("my_modal_5").close();
       });
   };
