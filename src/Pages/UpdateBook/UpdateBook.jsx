@@ -26,12 +26,16 @@ const UpdateBook = () => {
     };
 
     axios
-      .put(`http://localhost:5000/books/${_id}`, updatedBook, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
+      .put(
+        `https://book-store-server-puce.vercel.app/books/${_id}`,
+        updatedBook,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         console.log(response.data);
         if (response.data.modifiedCount > 0) {

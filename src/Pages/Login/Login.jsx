@@ -36,7 +36,7 @@ const Login = () => {
       });
     // axios
     //   .post(
-    //     "http://localhost:5000/jwt",
+    //     "https://book-store-server-puce.vercel.app/jwt",
     //     { email: email },
     //     {
     //       withCredentials: true,

@@ -7,7 +7,9 @@ const CategoryDetails = () => {
   const category = useLoaderData();
   const { category_name } = category;
   useEffect(() => {
-    fetch(`http://localhost:5000/books/category/${category_name}`)
+    fetch(
+      `https://book-store-server-puce.vercel.app/books/category/${category_name}`
+    )
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, [category_name]);

@@ -8,7 +8,7 @@ const BorrowedBooksCard = ({ book, borrowedBooks, setBorrowedBooks }) => {
   const { quantity } = newBook;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/books/${book_id}`)
+    fetch(`https://book-store-server-puce.vercel.app/books/${book_id}`)
       .then((res) => res.json())
       .then((data) => setNewBook(data));
   }, [book_id]);
@@ -26,9 +26,12 @@ const BorrowedBooksCard = ({ book, borrowedBooks, setBorrowedBooks }) => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/borrowed_books/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://book-store-server-puce.vercel.app/borrowed_books/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -43,7 +46,7 @@ const BorrowedBooksCard = ({ book, borrowedBooks, setBorrowedBooks }) => {
       const newQuantity = bookAmount + 1;
       const validAmount = newQuantity < 0 ? 0 : newQuantity;
 
-      fetch(`http://localhost:5000/books/${book_id}`, {
+      fetch(`https://book-store-server-puce.vercel.app/books/${book_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

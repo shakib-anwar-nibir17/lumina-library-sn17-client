@@ -1,8 +1,20 @@
-# React + Vite
+# Lumina Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Main Features of these website -
 
-Currently, two official plugins are available:
+#### 1.Email Password and Google Registration and Sign in
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### 2. Category wise book collection.
+
+#### 3.Update Book Data feature
+
+#### 4.User can borrow books. But User can only borrow one copy of a book at a time
+
+#### 5.Book Reading route.
+
+##### Additional
+
+- Swiper js has been used to show user review.
+- React Form Hooks has been used to handle add books form.
+
+[Lumina Library Project Live Link](https://library-lumina-sn17.web.app/)

@@ -50,7 +50,7 @@ const BookDetails = () => {
     };
 
     console.log(newEntry);
-    fetch("http://localhost:5000/borrowed_books", {
+    fetch("https://book-store-server-puce.vercel.app/borrowed_books", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -78,7 +78,7 @@ const BookDetails = () => {
 
         setBookQuantity(validAmount);
 
-        fetch(`http://localhost:5000/books/${_id}`, {
+        fetch(`https://book-store-server-puce.vercel.app/books/${_id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

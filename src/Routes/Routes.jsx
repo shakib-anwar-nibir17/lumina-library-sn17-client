@@ -39,7 +39,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://book-store-server-puce.vercel.app/category/${params.id}`
+          ),
       },
       {
         path: "/login", //login navLink
@@ -57,7 +59,7 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`),
+          fetch(`https://book-store-server-puce.vercel.app/books/${params.id}`),
       },
       {
         path: "/books_details/read/:id",
@@ -67,7 +69,7 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`),
+          fetch(`https://book-store-server-puce.vercel.app/books/${params.id}`),
       },
       {
         path: "/books", //all books navLink
@@ -77,7 +79,9 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch("http://localhost:5000/books", { credentials: "include" }),
+          fetch("https://book-store-server-puce.vercel.app/books", {
+            credentials: "include",
+          }),
       },
       {
         path: "/update_book/:id",
@@ -87,9 +91,12 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/books/${params.id}`, {
-            credentials: "include",
-          }),
+          fetch(
+            `https://book-store-server-puce.vercel.app/books/${params.id}`,
+            {
+              credentials: "include",
+            }
+          ),
       },
       {
         path: "/borrowed_books", //Borrowed Books navLink

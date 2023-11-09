@@ -32,7 +32,7 @@ const Navbar = () => {
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
     // axios
-    //   .post("http://localhost:5000/logout")
+    //   .post("https://book-store-server-puce.vercel.app/logout")
     //   .then((response) => {
     //     console.log("Cookie cleared:", response.data.message);
     //   })

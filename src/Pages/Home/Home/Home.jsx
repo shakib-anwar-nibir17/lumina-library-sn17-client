@@ -11,7 +11,7 @@ const Home = () => {
       <AboutUs></AboutUs>
       <Services></Services>
       <Category></Category>
-      <div className="px-4">
+      <div className="px-4 hidden md:block">
         <Review></Review>
       </div>
     </div>

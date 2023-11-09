@@ -15,8 +15,8 @@ import { FreeMode, Pagination } from "swiper/modules";
 const Review = () => {
   return (
     <div className="mt-20 mb-28">
-      <h2 className="text-3xl  text-custom-main font-bold mb-16">
-        User reviews
+      <h2 className="text-3xl  text-custom-main font-bold mb-16 text-center">
+        User Reviews
       </h2>
       <Swiper
         slidesPerView={2}
