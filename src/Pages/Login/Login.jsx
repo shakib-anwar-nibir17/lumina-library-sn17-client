@@ -24,7 +24,7 @@ const Login = () => {
         Swal.fire({
           icon: "success",
         });
-        navigate(location?.state ? location.state : "/");
+        navigate("/");
       })
       .catch((error) => {
         console.error(error);
@@ -34,17 +34,6 @@ const Login = () => {
           text: "Check if you have typed the correct password or email",
         });
       });
-    // axios
-    //   .post(
-    //     "https://book-store-server-puce.vercel.app/jwt",
-    //     { email: email },
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log("token response", res.data);
-    //   });
   };
 
   const handleLoginWithGoogle = () => {
