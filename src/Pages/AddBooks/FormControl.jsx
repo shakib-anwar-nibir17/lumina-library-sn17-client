@@ -17,19 +17,13 @@ const FormControl = () => {
   const addBooks = (data) => {
     setData(data);
 
-    fetch(
-      "https://book-store-server-puce.vercel.app/books",
-      {
-        credentials: "include",
+    fetch("https://book-store-server-puce.vercel.app/books", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
+      body: JSON.stringify(data),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
