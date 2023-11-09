@@ -4,6 +4,7 @@ import logo from "../../../assets/logo.png";
 
 import useAuth from "../../../Hooks/useAuth";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -30,6 +31,14 @@ const Navbar = () => {
     logOut()
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
+    axios
+      .post("http://localhost:5000/logout")
+      .then((response) => {
+        console.log("Cookie cleared:", response.data.message);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   const navLinks = (
     <>
@@ -146,7 +155,7 @@ const Navbar = () => {
             </div>
           ) : null}
           {user && user.photoURL ? (
-            <label className="btn btn-ghost btn-circle avatar lg:hidden lg:block">
+            <label className="btn btn-ghost btn-circle avatar">
               <div className="w-12 rounded-full">
                 <img src={user.photoURL} />
               </div>
