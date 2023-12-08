@@ -1,5 +1,29 @@
 # Lumina Library
 
+## Technology used in the Project
+
+#### 1. React and React Router
+
+#### 2. TailWind Css for styling and Daisy Ui for component
+
+#### 3. Express and Node for backend server
+
+#### 4. Mongodb as database
+
+#### 5. Firebase as a user Authentication
+
+#### 5. Firebase as a user Authentication
+
+## List of Packages used for the FrontEnd
+
+#### 1. React Hook Form
+
+#### 2. React Date Picker
+
+#### 3. Sweet Alert 2 and React icons
+
+#### 4. Axios
+
 The Main Features of these website -
 
 #### 1.Email Password and Google Registration and Sign in
@@ -14,9 +38,9 @@ The Main Features of these website -
 
 #### GIT REPOSITORY
 
-- [Client site](https://github.com/Porgramming-Hero-web-course/b8a11-client-side-shakib-anwar-nibir17)
+- [Client site](https://github.com/shakib-anwar-nibir17/lumina-library-sn17-client?tab=readme-ov-file)
 
-- [Server site](https://github.com/Porgramming-Hero-web-course/b8a11-server-side-shakib-anwar-nibir17)
+- [Server site](https://github.com/shakib-anwar-nibir17/lumina-library-sn17-server)
 
 ##### Additional
 
